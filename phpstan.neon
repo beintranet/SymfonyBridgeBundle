@@ -1,0 +1,9 @@
+parameters:
+    phpVersion: 80000
+    level: 1
+    paths:
+        - src
+        - tests
+
+    ignoreErrors:
+        - '#Instantiated class Symfony\\Component\\DependencyInjection\\DefinitionDecorator not found.#'
