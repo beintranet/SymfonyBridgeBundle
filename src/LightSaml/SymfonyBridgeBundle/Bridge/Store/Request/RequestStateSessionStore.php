@@ -11,6 +11,7 @@ class RequestStateSessionStore extends AbstractRequestStateArrayStore
     protected RequestStack $requestStack;
     protected string $providerId;
     protected string $prefix;
+    protected string $key;
 
     public function __construct(
         RequestStack $requestStack,
@@ -21,11 +22,12 @@ class RequestStateSessionStore extends AbstractRequestStateArrayStore
         $this->requestStack = $requestStack;
         $this->providerId = $providerId;
         $this->prefix = $prefix;
+        $this->key = sprintf('%s_%s', $this->providerId, $this->prefix);
     }
 
     protected function getKey(): string
     {
-        return sprintf('%s_%s', $this->providerId, $this->prefix);
+        return $this->key;
     }
 
     protected function getArray(): array
