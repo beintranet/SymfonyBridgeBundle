@@ -4,7 +4,7 @@ framework:
     router:          { resource: "%kernel.project_dir%/tests/LightSaml/SymfonyBridgeBundle/Tests/Functional/routing.yml" }
     csrf_protection: false
     session:
-        storage_id:  session.mock_storage
+        storage_factory_id:  session.mock_storage
 
 services:
     session.mock_storage:
