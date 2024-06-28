@@ -157,18 +157,9 @@ class LightSamlSymfonyBridgeExtension extends Extension
             foreach ($config['party']['idp']['files'] as $id => $file) {
                 $id = sprintf('lightsaml.party.idp_entity_descriptor_store.file.%s', $id);
 
-                if (class_exists('Symfony\Component\DependencyInjection\ChildDefinition')) {
-                    // Symfony >= 3.3
-                    $container
-                        ->setDefinition($id, new ChildDefinition('lightsaml.party.idp_entity_descriptor_store.file'))
-                        ->replaceArgument(0, $file);
-                } else {
-                    // Symfony < 3.3
-                    $container
-                        ->setDefinition($id, new DefinitionDecorator('lightsaml.party.idp_entity_descriptor_store.file'))
-                        ->replaceArgument(0, $file);
-                }
-
+                $container
+                    ->setDefinition($id, new ChildDefinition('lightsaml.party.idp_entity_descriptor_store.file'))
+                    ->replaceArgument(0, $file);
                 $store->addMethodCall('add', [new Reference($id)]);
             }
         }
@@ -194,15 +185,6 @@ class LightSamlSymfonyBridgeExtension extends Extension
      */
     private function setFactoryCompatibleWay(Definition $definition, $classOrReference, $method)
     {
-        if (method_exists($definition, 'setFactory')) {
-            $definition->setFactory([$classOrReference, $method]);
-        } else {
-            if ($classOrReference instanceof Reference) {
-                $definition->setFactoryService((string) $classOrReference);
-            } else {
-                $definition->setFactoryClass($classOrReference);
-            }
-            $definition->setFactoryMethod($method);
-        }
+        $definition->setFactory([$classOrReference, $method]);
     }
 }
