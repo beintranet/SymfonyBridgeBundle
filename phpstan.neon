@@ -6,5 +6,4 @@ parameters:
         - tests
 
     ignoreErrors:
-        - '#Method LightSaml\\SymfonyBridgeBundle\\Bridge\\Container\\ServiceContainer::getLogoutSessionResolver\(\) has invalid return type LightSaml\\Resolver\\Logout\\LogoutSessionResolverInterface#'
         - '#Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition::children\(\)#'
