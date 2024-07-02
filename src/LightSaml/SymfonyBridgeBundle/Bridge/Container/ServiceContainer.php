@@ -148,10 +148,7 @@ class ServiceContainer implements ServiceContainerInterface
         return $this->credentialResolver;
     }
 
-    /**
-     * @return \LightSaml\Resolver\Logout\LogoutSessionResolverInterface
-     */
-    public function getLogoutSessionResolver()
+    public function getLogoutSessionResolver(): never
     {
         throw new \LogicException('Not implemented');
     }
